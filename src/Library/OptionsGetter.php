@@ -32,8 +32,10 @@ class OptionsGetter {
             case 'selectOptionslist':
             case 'checkboxOptionslist':
 
-                $objOptionGetter = new \CatalogManager\OptionsGetter( $objField->row() );
-
+                $arrField = $objField->row();
+                $arrField['options'] = $arrField['dbOptions']; // rename options
+                unset( $arrField['dbOptions'] ); // delete db options
+                $objOptionGetter = new \CatalogManager\OptionsGetter( $arrField );
                 return $this->parseOptions( $objOptionGetter->getOptions(), $objField->includeBlankOption, ( $objField->blankOptionLabel ?: '-' ) );
 
                 break;

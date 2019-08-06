@@ -4,7 +4,7 @@ $GLOBALS['TL_LANG']['FFL']['radioOptionslist'] = [ 'Radio-Button-Menü (DB)', ''
 $GLOBALS['TL_LANG']['FFL']['checkboxOptionslist'] = [ 'Checkbox-Menü (DB)', '' ];
 $GLOBALS['TL_LANG']['FFL']['selectOptionslist'] = [ 'Select-Menü (DB)', '' ];
 
-$GLOBALS['TL_LANG']['tl_form_field']['options'] = [ 'Auswahlliste', 'Bitte tragen Sie Ihre Auswahlliste ein.' ];
+$GLOBALS['TL_LANG']['tl_form_field']['dbOptions'] = [ 'Auswahlliste', 'Bitte tragen Sie Ihre Auswahlliste ein.' ];
 $GLOBALS['TL_LANG']['tl_form_field']['optionsType'] = [ 'Quelle', 'Hier können Sie eine Quelle auswählen, aus der die Auswahlliste generiert werden soll.' ];
 $GLOBALS['TL_LANG']['tl_form_field']['dbColumn'] = [ 'Spalte', 'Bitte wählen Sie eine Spalte aus.' ];
 $GLOBALS['TL_LANG']['tl_form_field']['dbTable'] = [ 'Tabelle', 'Bitte wählen Sie für die Tabelle ein Eingabefeld.' ];

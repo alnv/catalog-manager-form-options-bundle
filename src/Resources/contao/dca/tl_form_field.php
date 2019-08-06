@@ -4,7 +4,7 @@ $GLOBALS['TL_DCA']['tl_form_field']['palettes']['__selector__'][] = 'optionsType
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['radioOptionslist'] = '{type_legend},type,name,label;{fconfig_legend},mandatory;{options_legend},optionsType,includeBlankOption,blankOptionLabel;{expert_legend:hide},class;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['checkboxOptionslist'] = '{type_legend},type,name,label;{fconfig_legend},mandatory;{options_legend},optionsType;{expert_legend:hide},class;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['selectOptionslist'] = '{type_legend},type,name,label;{fconfig_legend},mandatory,multiple;{options_legend},optionsType,includeBlankOption,blankOptionLabel;{expert_legend:hide},class,accesskey,tabindex;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
-$GLOBALS['TL_DCA']['tl_form_field']['subpalettes']['optionsType_useOptions'] = 'options';
+$GLOBALS['TL_DCA']['tl_form_field']['subpalettes']['optionsType_useOptions'] = 'dbOptions';
 $GLOBALS['TL_DCA']['tl_form_field']['subpalettes']['optionsType_useDbOptions'] = 'dbTable,dbTableKey,dbTableValue,dbTaxonomy,dbOrderBy,dbIgnoreEmptyValues';
 $GLOBALS['TL_DCA']['tl_form_field']['subpalettes']['optionsType_useActiveDbOptions'] = 'dbTable,dbColumn,dbTaxonomy,dbOrderBy,dbIgnoreEmptyValues';
 
@@ -24,8 +24,8 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['optionsType'] = [
     'sql' => "varchar(18) NOT NULL default ''"
 ];
 
-$GLOBALS['TL_DCA']['tl_form_field']['fields']['options'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['options'],
+$GLOBALS['TL_DCA']['tl_form_field']['fields']['dbOptions'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['dbOptions'],
     'inputType' => 'keyValueWizard',
     'exclude' => true,
     'eval' => [

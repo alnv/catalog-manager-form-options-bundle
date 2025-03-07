@@ -1,5 +1,7 @@
 <?php
 
+use Alnv\CatalogManagerFormOptionsBundle\Library\FormField;
+
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['__selector__'][] = 'optionsType';
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['radioOptionslist'] = '{type_legend},type,name,label;{fconfig_legend},mandatory;{options_legend},optionsType,includeBlankOption,blankOptionLabel;{expert_legend:hide},class;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['checkboxOptionslist'] = '{type_legend},type,name,label;{fconfig_legend},mandatory;{options_legend},optionsType;{expert_legend:hide},class;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
@@ -9,7 +11,6 @@ $GLOBALS['TL_DCA']['tl_form_field']['subpalettes']['optionsType_useDbOptions'] =
 $GLOBALS['TL_DCA']['tl_form_field']['subpalettes']['optionsType_useActiveDbOptions'] = 'dbTable,dbColumn,dbTaxonomy,dbOrderBy,dbIgnoreEmptyValues';
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['optionsType'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['optionsType'],
     'inputType' => 'radio',
     'default' => 'useOptions',
     'eval' => [
@@ -18,14 +19,13 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['optionsType'] = [
         'tl_class' => 'clr',
         'submitOnChange' => true
     ],
-    'options' => [ 'useOptions', 'useDbOptions', 'useActiveDbOptions' ],
+    'options' => ['useOptions', 'useDbOptions', 'useActiveDbOptions'],
     'reference' => &$GLOBALS['TL_LANG']['tl_form_field']['reference']['optionsType'],
     'exclude' => true,
     'sql' => "varchar(18) NOT NULL default ''"
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbOptions'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['dbOptions'],
     'inputType' => 'keyValueWizard',
     'exclude' => true,
     'eval' => [
@@ -35,7 +35,6 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbOptions'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbColumn'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['dbColumn'],
     'inputType' => 'select',
     'eval' => [
         'chosen' => true,
@@ -43,13 +42,12 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbColumn'] = [
         'tl_class' => 'w50',
         'mandatory' => true
     ],
-    'options_callback' => [ 'Alnv\CatalogManagerFormOptionsBundle\Library\FormField', 'getTableColumns' ],
+    'options_callback' => [FormField::class, 'getTableColumns'],
     'exclude' => true,
     'sql' => "varchar(128) NOT NULL default ''"
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbTableKey'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['dbTableKey'],
     'inputType' => 'select',
     'eval' => [
         'chosen' => true,
@@ -57,13 +55,12 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbTableKey'] = [
         'tl_class' => 'w50',
         'mandatory' => true
     ],
-    'options_callback' => [ 'Alnv\CatalogManagerFormOptionsBundle\Library\FormField', 'getColumns' ],
+    'options_callback' => [FormField::class, 'getColumns'],
     'exclude' => true,
     'sql' => "varchar(128) NOT NULL default ''"
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbTableValue'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['dbTableValue'],
     'inputType' => 'select',
     'eval' => [
         'chosen' => true,
@@ -71,13 +68,12 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbTableValue'] = [
         'tl_class' => 'w50',
         'mandatory' => true
     ],
-    'options_callback' => [ 'Alnv\CatalogManagerFormOptionsBundle\Library\FormField', 'getColumns' ],
+    'options_callback' => [FormField::class, 'getColumns'],
     'exclude' => true,
     'sql' => "varchar(128) NOT NULL default ''"
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbTable'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['dbTable'],
     'inputType' => 'select',
     'eval' => [
         'chosen' => true,
@@ -86,21 +82,20 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbTable'] = [
         'mandatory' => true,
         'submitOnChange' => true,
         'blankOptionLabel' => '-',
-        'includeBlankOption'=>true,
+        'includeBlankOption' => true,
     ],
-    'options_callback' => [ 'Alnv\CatalogManagerFormOptionsBundle\Library\FormField', 'getTables' ],
+    'options_callback' => [FormField::class, 'getTables'],
     'exclude' => true,
     'sql' => "varchar(128) NOT NULL default ''"
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbTaxonomy'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['dbTaxonomy'],
     'inputType' => 'catalogTaxonomyWizard',
     'eval' => [
         'tl_class' => 'clr',
         'dcTable' => 'tl_form_field',
-        'taxonomyTable' => [ 'Alnv\CatalogManagerFormOptionsBundle\Library\FormField', 'getTable' ],
-        'taxonomyEntities' => [ 'Alnv\CatalogManagerFormOptionsBundle\Library\FormField', 'getFields' ]
+        'taxonomyTable' => [FormField::class, 'getTable'],
+        'taxonomyEntities' => [FormField::class, 'getFields']
     ],
     'exclude' => true,
     'sql' => "blob NULL"
@@ -115,15 +110,14 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbOrderBy'] = [
         'includeBlankOption' => true,
         'mainLabel' => 'catalogManagerFields',
         'dependedLabel' => 'catalogManagerOrder',
-        'mainOptions' => [ 'CatalogManager\OrderByHelper', 'getSortableFields' ],
-        'dependedOptions' => [ 'CatalogManager\OrderByHelper', 'getOrderByItems' ]
+        'mainOptions' => ['CatalogManager\OrderByHelper', 'getSortableFields'],
+        'dependedOptions' => ['CatalogManager\OrderByHelper', 'getOrderByItems']
     ],
     'exclude' => true,
     'sql' => "blob NULL"
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbIgnoreEmptyValues'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['dbIgnoreEmptyValues'],
     'inputType' => 'checkbox',
     'eval' => [
         'tl_class' => 'w50 m12',
@@ -133,7 +127,6 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbIgnoreEmptyValues'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['includeBlankOption'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['includeBlankOption'],
     'inputType' => 'checkbox',
     'eval' => [
         'tl_class' => 'w50 m12',
@@ -143,7 +136,6 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['includeBlankOption'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['blankOptionLabel'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_form_field']['blankOptionLabel'],
     'inputType' => 'text',
     'eval' => [
         'maxlength' => 64,

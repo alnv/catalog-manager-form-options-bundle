@@ -5,19 +5,11 @@
   "autoload": {
     "psr-4": {
       "Alnv\\CatalogManagerFormOptionsBundle\\": "src/"
-    },
-    "classmap": [
-      "src/Resources/contao/"
-    ],
-    "exclude-from-classmap": [
-      "src/Resources/contao/dca/",
-      "src/Resources/contao/config/",
-      "src/Resources/contao/languages/",
-      "src/Resources/contao/templates/"
-    ]
+    }
   },
   "require": {
     "php":">=8.0",
+    "contao/core-bundle": "~5.3",
     "alnv/catalog-manager": "^2.0"
   },
   "config": {

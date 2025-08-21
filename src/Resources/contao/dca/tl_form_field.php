@@ -1,5 +1,6 @@
 <?php
 
+use Alnv\CatalogManagerBundle\OrderByHelper;
 use Alnv\CatalogManagerFormOptionsBundle\Library\FormField;
 
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['__selector__'][] = 'optionsType';
@@ -110,8 +111,8 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['dbOrderBy'] = [
         'includeBlankOption' => true,
         'mainLabel' => 'catalogManagerFields',
         'dependedLabel' => 'catalogManagerOrder',
-        'mainOptions' => ['CatalogManager\OrderByHelper', 'getSortableFields'],
-        'dependedOptions' => ['CatalogManager\OrderByHelper', 'getOrderByItems']
+        'mainOptions' => [OrderByHelper::class, 'getSortableFields'],
+        'dependedOptions' => [OrderByHelper::class, 'getOrderByItems']
     ],
     'exclude' => true,
     'sql' => "blob NULL"

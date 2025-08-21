@@ -17,7 +17,6 @@ class FormField
     {
 
         if ($this->objDatabase == null) {
-
             $this->objDatabase = Database::getInstance();
         }
     }

@@ -145,3 +145,4 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['blankOptionLabel'] = [
     'exclude' => true,
     'sql' => "varchar(64) NOT NULL default ''"
 ];
+

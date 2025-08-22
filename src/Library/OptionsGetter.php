@@ -14,7 +14,7 @@ class OptionsGetter
 
             $arrOptions = $this->getOptions($objField->type, $objField);
 
-            if ($arrOptions == null) {
+            if ($arrOptions === null) {
                 continue;
             }
 
@@ -24,27 +24,30 @@ class OptionsGetter
         return $arrFields;
     }
 
-
     protected function getOptions($strType, $objField)
     {
 
         switch ($strType) {
             case 'radioOptionslist':
             case 'selectOptionslist':
-            case 'checkboxOptionslist':
                 $arrField = $objField->row();
                 $arrField['options'] = $arrField['dbOptions']; // rename options
                 unset($arrField['dbOptions']); // delete db options
                 $objOptionGetter = new CMOptionGetter($arrField);
                 return $this->parseOptions($objOptionGetter->getOptions(), $objField->includeBlankOption, ($objField->blankOptionLabel ?: '-'));
+            case 'checkboxOptionslist':
+                $arrField = $objField->row();
+                $arrField['options'] = $arrField['dbOptions']; // rename options
+                unset($arrField['dbOptions']); // delete db options
+                $objOptionGetter = new CMOptionGetter($arrField);
+                $objField->multiple = true;
+                return $this->parseOptions($objOptionGetter->getOptions(), $objField->includeBlankOption, ($objField->blankOptionLabel ?: '-'));
         }
-
 
         return null;
     }
 
-
-    protected function parseOptions($arrOptions, $strIncludeBlankOption, $strBlankOptionLabel)
+    protected function parseOptions($arrOptions, $strIncludeBlankOption, $strBlankOptionLabel): array
     {
 
         $arrReturn = [];
